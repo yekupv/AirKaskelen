@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" />
+	<script src="ajax.js"></script>
+	<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+	<script src="add.js"></script>
+	<title>Simple Map</title>
+      
+      
+      <style type="text/css">
+          @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+
+body {
+	background: #FF416C;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	font-family: 'Montserrat', sans-serif;
+	height: auto;
+	margin: -20px 0 50px;
+}
+.container {
+
+	background-color: #f6f5f7;
+	border-radius: 10px;
+  	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
+			0 10px 10px rgba(0,0,0,0.22);
+	position: relative;
+	overflow: hidden;
+	max-width: 100%;
+	height:auto;
+}
+h1 {
+	font-weight: bold;
+	margin: 0;
+    color: #333;
+    font-size: 50px;
+}
+ select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  outline: 0;
+  box-shadow: none;
+  border: 0 !important;
+  background: #333;
+  background-image: none;
+}
+/* Remove IE arrow */
+select::-ms-expand {
+  display: none;
+}
+/* Custom Select */
+.select {
+  position: relative;
+  display: flex;
+  width: 20em;
+  height: 3em;
+  line-height: 3;
+  background: #2c3e50;
+  overflow: hidden;
+  border-radius: .25em;
+    margin: 20px 0 20px 0 ;
+}
+select {
+  flex: 1;
+  padding: 0 .5em;
+  color: #fff;
+  cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+}
+/* Arrow */
+.select::after {
+  content: '\25BC';
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0 1em;
+  background: #34495e;
+  cursor: pointer;
+  pointer-events: none;
+  -webkit-transition: .25s all ease;
+  -o-transition: .25s all ease;
+  transition: .25s all ease;
+}
+/* Transition */
+.select:hover::after {
+  color: #FF416C;
+}
+input {
+	background-color: #eee;
+	border: none;
+	padding: 12px 15px;
+	margin: 8px 0;
+	width: 10%;
+    border-radius: 15px;
+}
+.table {
+  display: flex;
+}
+.inputs{
+  display: grid;
+}
+.tables{
+  background-color: coral; 
+  border-radius: 10px;
+  margin-left:20px;
+}
+.insert{
+  background-color:#FF416C;
+  width: 8vw;
+  height:6px;
+}
+      </style>
+  </head>
+  <body>
+      <h1 style="margin: 50px 0 20px 0 ">airKASKELEN <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-server" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M1.333 2.667C1.333 1.194 4.318 0 8 0s6.667 1.194 6.667 2.667V4C14.665 5.474 11.68 6.667 8 6.667 4.318 6.667 1.333 5.473 1.333 4V2.667zm0 3.667v3C1.333 10.805 4.318 12 8 12c3.68 0 6.665-1.193 6.667-2.665V6.334c-.43.32-.931.58-1.458.79C11.81 7.684 9.967 8 8 8c-1.967 0-3.81-.317-5.21-.876a6.508 6.508 0 0 1-1.457-.79zm13.334 5.334c-.43.319-.931.578-1.458.789-1.4.56-3.242.876-5.209.876-1.967 0-3.81-.316-5.21-.876a6.51 6.51 0 0 1-1.457-.79v1.666C1.333 14.806 4.318 16 8 16s6.667-1.194 6.667-2.667v-1.665z"/>
+</svg></h1>
+      <div class="container" id="container1">
+	  
+	  <form method="POST" action="add.php">
+      <form>	  
+    <select name="users" onchange="showUser(this.value)" id="table"  onclick="changeInput()">
+      <option value="">Select table:</option>
+      <option value="2">airplane</option>
+      <option value="3">airport</option>
+      <option value="4">baggage</option>
+	  <option value="5">booking_agency</option>
+	  <option value="6">client</option>
+	  <option value="7">client_feedback</option>
+	  <option value="8">department</option>
+	  <option value="9">employee</option>
+	  <option value="10">flight</option>
+	  <option value="11">food</option>
+	  <option value="12">location</option>
+	  <option value="13">partner_offer</option>
+	  <option value="14">reservation</option>
+	  <option value="15">ticket</option>
+      </select>
+    <br>
+          <div class="three columns">
+          <input  type="submit" value="ADD" name ="add">
+          <input  type="submit" value="UPDATE" name ="update" >
+          <input  type="submit" value="DELETE" name ="delete">
+		  
+		  </div>
+		  <div>
+			<div class="table">
+		<div class="inputs">
+        <input class="insert" placeholder="data 1" id="in1" name="inp1" >
+        <input class="insert" placeholder="data 2" id="in2" name="inp2">
+        <input class="insert" placeholder="data 3" id="in3" name="inp3">
+        <input class="insert" placeholder="data 4" id="in4" name="inp4">
+        <input class="insert" placeholder="data 5" id="in5" name="inp5">
+        <input class="insert" placeholder="data 6" id="in6" name="inp6">
+        <input class="insert" placeholder="data 7" id="in7" name="inp7">
+        <input class="insert" placeholder="data 8" id="in8" name="inp8">
+        <input class="insert" placeholder="data 9" id="in9" name="inp9">
+        <input class="insert" placeholder="data 10" id="in10" name="inp10">
+        <input class="insert" placeholder="data 11" id="in11" name="inp11">
+        <input class="insert" placeholder="data 12" id="in12" name="inp12">
+		<input class="insert" placeholder="data 13" id="in13" name="inp13">
+		<input class="insert" placeholder="data 14" id="in14" name="inp14">
+      </div>
+      <div class="tables" id="txtHint">
+                <h1>Choose the table from database</h1>
+      </div>
+    </div>
+	</form>	
+    </form>
+      </div>
+  </body>
+</html>
